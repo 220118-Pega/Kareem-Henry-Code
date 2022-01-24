@@ -4,7 +4,7 @@
 - 📫 How to reach me **kareem.henry@revature.net**
 
 <h3 align="left">My Backstory:</h3>
-<p align="left">I graduated from ITT-Technical Institution, located in St. Rose, LA, with an A.S. in software development, and with this degree, I’ve learned HTML5, CSS3, PHP, and Javascript. Moreover, I gained a solid understanding of JAVA development and database programs such as MS SQL and object-oriented programming such as C#. In addition, the program taught me how to produce applications according to industrial standards and how to present application products for clients. Good organizational and communication skills were also well developed during my study at ITT-Tech.
+<p align="left">I graduated from ITT-Technical Institution, located in St. Rose, LA, with an A.S. in software development, and with this degree, I’ve learned HTML5, CSS3, PHP, and Javascript. Moreover, I gained a solid understanding of application development and database programs such as MS SQL and object-oriented programming such as C#. In addition, the program taught me how to produce applications according to industrial standards and how to present application products for clients. Good organizational and communication skills were also well developed during my study at ITT-Tech.
 
 In the meantime, I have been freelancing as a Web Developer/Designer. Also, working jobs other jobs as a Project Manager and General Manager of a sales store. Thus, with my supervisory experience and ability to self-start, I have obtained solid work skills to perform and manage performance. My goal with Revature is to step out of website services and get into application development and management. 
 </p>
