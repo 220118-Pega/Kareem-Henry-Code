@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.failman.revature;
 
 /**
@@ -12,19 +9,31 @@ package com.failman.revature;
 //Import need tools for project
 import java.util.*;
 
+// Create a public and class named Failman to execute a set of instructions. This is what I want to happen to and/or with this object and/or information?
 public class Failman {
 	
 	/**
 	 * @param args
 	 */
+	
+	/*
+	 * Execute a public and static method(tool) named main that accepts an Array of Strings from the user as an input parameter and returns nothing, or void.
+	 * (If your class does not have a main method, then it cannot be run as a program.
+	 * Of course, some classes are just used to represent data, and they dont need main methods.)
+	 * 
+	 */
 	public static void main(String[] args) {
+			// First, use this tool to listen for the information the user will enter after this /instructions how. 
 		try (Scanner myScanner = new Scanner(System.in)) {
-			// Every time you guess wrong, a letter gets added to FAILMAN. User loses once they have a FAILMAN
+			// Set the number of times I want the user to guess the information to 7/instructions how.
 			int wordParts = 7;
-			// Set the word you want to discover
+			// Second, send this String to the user/instructions how. 
 			System.out.println("Set the word to guess: ");
+			// Use this tool to except a String from the user to store/instructions how. 
 			String mysteryWord = myScanner.nextLine();
+			// Perform a Variable Declaration statement to return an ArrayList object as a String/instructions how.
 			List<String> correctLetters = new ArrayList<String>();
+			
 			String originalWord = mysteryWord;
 			while (wordParts > 0) {
 				System.out.println("Guess a letter: ");
@@ -41,7 +50,7 @@ public class Failman {
 				}
 				
 				System.out.println("Game progress: ");
-				for(Character letter:originaWord.toCharArray())
+				for(Character letter:originalWord.toCharArray())
 				{
 					if(correctLetters.contains(letter.toString()))
 					{
