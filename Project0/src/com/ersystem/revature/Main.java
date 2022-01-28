@@ -17,8 +17,9 @@ public class Main {
 	    String strDate = String.format("%tc", date );
 	    
 		Request firstTicket = new Request(1, strDate, 100.00, "I want my money back!", RequestType.TRAVEL, RequestStatus.APPROVED);
-		
-		System.out.println(firstTicket.requestType);
+		Request secondTicket = new Request(2, strDate, 1000.00, "Job better have my money!", RequestType.FOOD, RequestStatus.PENDING);
+
+		System.out.print(firstTicket);
 
 	}
 

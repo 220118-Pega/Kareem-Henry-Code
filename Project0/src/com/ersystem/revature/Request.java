@@ -32,13 +32,18 @@ public class Request {
 	String description;
 	String date;
 	
-	Request(int studentID, String date, double amount, String description, RequestType requestType, RequestStatus requestStatus) {
+	public Request(int studentID, String date, double amount, String description, RequestType requestType, RequestStatus requestStatus) {
 		this.studentID = studentID;
 		this.date = date;
 		this.amount = amount;
 		this.description = description;
 		this.requestType = requestType;
 		this.requestStatus = requestStatus;
+	}
+	
+	@Override
+	public String toString() {
+		return studentID + "\n"  + date + "\n" + amount + "\n" + description + "\n" + requestType + "\n" + requestStatus;
 	}
 
 }
