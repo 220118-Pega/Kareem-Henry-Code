@@ -29,14 +29,14 @@ public class Request {
 	RequestStatus requestStatus;
 	String description, date, dateofPurchase, name;
 	
-	public Request(String date, int employeeID, String name, String dateofPurchase, double amount, RequestType requestType, RequestStatus requestStatus, String description) {
+	public Request(String date, int employeeID, String name, RequestType requestType, String dateofPurchase, double amount, RequestStatus requestStatus, String description) {
 
 		this.date = date;
 		this.employeeID = employeeID;
 		this.name = name;
+		this.requestType = requestType;
 		this.dateofPurchase = dateofPurchase;
 		this.amount = amount;
-		this.requestType = requestType;
 		this.requestStatus = requestStatus;
 		this.description = description;
 		
@@ -47,10 +47,10 @@ public class Request {
 		return "REIMBURSEMENT REQUEST TICKET" + "\n" + 
 				"Date of Request: " +  date + "\n" + 
 				"Employee ID: " + employeeID + "\n"  + 
-				"Employee Name: " + name + "\n"  + 
-				"Amount: " + amount + "\n" + 
-				"Amount: " + dateofPurchase + "\n" + 				
+				"Employee Name: " + name + "\n"  + 			
 				"Type: " + requestType + "\n" + 
+				"Amount: " + amount + "\n" + 
+				"Amount: " + dateofPurchase + "\n" + 	
 				"Status: " +  requestStatus + "\n" + 
 				"Description: " + description + "\n" +"\n";
 	}

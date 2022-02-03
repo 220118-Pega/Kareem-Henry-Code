@@ -16,51 +16,48 @@ import java.util.List;
 import com.ersystem.revature.obj.*;
 
 
-public class Main {
-	static Scanner userInput = new Scanner(System.in);
+public class Main {   
 
 	/**
 	 * @param args
+	 *
 	 */
+	
+	/*****************************************START OF MAIN LOGIC ***********************************************/
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub	    
+		
+		Scanner userInput = new Scanner(System.in);   
 	    
 	    // Title
-	    System.out.println("EXPENSE REIMBURSEMENT API");
-	    System.out.println("\n");
-	    
-	    String input = "";
-//		int intRep = 0;	
+	    System.out.println("\nEXPENSE REIMBURSEMENT API\n");
+    
 		String[] values = {"1","2","3"};
 		String output = null;
 		boolean sInArray = true;
 	    
+	    String input = "";
+	    
 	    
 	    // Set up main questions for API
 	    String qnOne = "What would you like to accomplish? Please type the number associated with your query.\n"
-	    		   + "[1] Start New Request\n[2] View Status of Request\n[3] Access Archieve\n";   	
-  
-//	    String qnTwo = "Would you like to perform another action?\n"
-//	    		   + "[1] Yes\n[2] No\n";
-//	    
-//	   
-//	    
-//	    String qnThree = "Thank You for using my Expense Reimbursement API System!\n";	
-	    
-
+	    		   + "[1] Start New Request\n[2] View Status of Request\n[3] Access Archieve\n[4] Exit\n";  	    
     	
 	    // Set up questions for entryQ([1] Start New Request)
     	String enqn1 = "Please enter your EmployeeID.\n";
-    	String enqn2 = "Enter the amount needed for reimbursement.";
-    	String enqn3 = "Enter the date of puchase in dd/MM/yyyy format:\n";
-    	String enqn4 = "Please provide a short description of purchase.\n";
-    	String enqn5 = "Successful Submission! Your manaager will be in touch within 2-3 business days regarding your reimbursement.\n";
+    	String enqn2 = "Please enter the number cooresponding to your type of reimbursement.\n"
+	    		   + "[1] Lodging\n[2] Travel\n[3] Food\n[4] Other\n";
+    	String enqn3 = "Enter the amount needed for reimbursement.\n";
+    	String enqn4 = "Enter the date of puchase in MM/dd/yyyy format:\n";
+    	String enqn5 = "Please provide a short description of purchase.\n";
+    	String enqn6 = "Successful Submission! Your manaager will be in touch within 2-3 business days regarding your reimbursement.\n";
     	
     	// Set up questions for requestQ([2] View Status of Request)
     	String reqn1 = "Please enter your EmployeeID.\n";
 	    
 	    // Set up questions for archieveQ([3] Access Archive)
-    	String arqn1 = "Please enter your EmployeeID.\n";
+    	String arqn1 = "Please select if you're a Maanager or Employee?\n"
+	    		   + "[1] Manager\n[2] Employee\n";
+    	
     	
     	
     	
@@ -79,7 +76,8 @@ public class Main {
 	    		new Question(enqn2,  input),
 	    		new Question(enqn3,  input),
 	    		new Question(enqn4,  input),
-	    		new Question(enqn5,  input)
+	    		new Question(enqn5,  input),
+	    		new Question(enqn6,  input)
 	    	};
 	    
 	    Question []  requestQ = { 
@@ -89,7 +87,18 @@ public class Main {
 	    Question []  archiveQ = { 
 	    		new Question(arqn1,  input)		
 	    	};
-	
+	    
+	    /*****TESTING CODES******/	    
+	    
+//		Print the values to check if the input was correctly obtained.	    
+//		Request firstTicket = new Request(strDate, 1, "Jesus", RequestType.TRAVEL, reqDate, 100.00, RequestStatus.APPROVED, "I want my money back!");
+//		Request secondTicket = new Request(strDate, 2, "Mary", RequestType.FOOD, reqDate, 1000.00, RequestStatus.PENDING, "Job better have my money!");
+//	
+//		System.out.print(firstTicket);
+//		System.out.print(secondTicket);
+	    
+	    /*****END OF TESTING CODES******/
+		    
 		
 		while(sInArray) {
 			
@@ -98,22 +107,30 @@ public class Main {
 		
 			try {  			 
 				String  resp = userInput.nextLine();
-					int intRep = Integer.parseInt(resp);	
+				int intRep = Integer.parseInt(resp);	
 	    			switch (intRep) {
-	    			case 1:  startRequest(entryQ);
-	        			break;
-	    			case 2:  viewRequest(requestQ);
-	        			break;
-	    			case 3:  accessArchive(archiveQ);
-	        			break;
-	        		default: output =  "\nPlease type either 1, 2, or 3 to proceed.\n";
-	        			break;
+	    				case 1:  startRequest(entryQ);
+	        				break;
+	    				case 2:  viewRequest(requestQ);
+	        				break;
+	    				case 3:  accessArchive(archiveQ);
+	        				break;
+	    				case 4:  output =  "\nThank you! Come Again.\n";
+	        				break;	
+	    				default: output =  "\nPlease type either 1, 2, or 3 to proceed.\n";
+	        				break;
 	    			} 	
 	    			sInArray = Arrays.stream(values).anyMatch(resp::equals);
-    				System.out.println(output);
+	    			if(output.equals(null)){
+	    				output =  "\nThank you! Come Again.\n";
+	    				System.out.println(output);
+	    				return;
+	    			} else {
+	    				System.out.println(output);
+	    			}
 		
 			} catch(Exception e) {
-				System.out.println("\nInvalid Entry! Please use correct valuetype.\n");
+				System.out.println("\nInvalid Entry! Please use correct datatype.\n");
 			}
 			if(sInArray != true) {
 				sInArray = true;
@@ -125,63 +142,164 @@ public class Main {
 		
 	};
 
-    
+   /*************************************** END OF MAIN LOGIC ****************************************/ 
+	
+	
 	// This function establishes what happens if a user needs to start a new request ticket
     public static void startRequest(Question [] entryQ) {
+		Scanner userInput = new Scanner(System.in);
+		boolean validID = false;
+		boolean validType = false;
+		boolean validAOP = false;
+		boolean validDOP = false;
+		String strInput;
+		int emID = 0; 
+		RequestType typeER = null;
+		Double reimAmt = null; 
+		Date dopStr = new Date();
+		String desc = "";
+		
+    	
+    	// Set up question to review information.
+    	String checkIt = "Please review the informationn entered: \n\n" + "Is this information correct?\n"
+        		   + "Yes\nNo\n";
     	
     	// Title
-	    System.out.println("REQUEST TICKET ENTRY");
-	    System.out.println("\n");
-				
-    	for (int u = 0; u < entryQ.length; u++) {
-    		System.out.println(entryQ[u].query);
-    		String subResponse = userInput.nextLine();
-    		System.out.println("\n");
-    	}
-
-    	
+	    System.out.println("\nREQUEST TICKET ENTRY\n");	
+	    	for (int i = 0; i < entryQ.length; i++) {	
+	    		// Take User ID 
+	    		while(validID == false) {
+	    			System.out.println(entryQ[0].query);
+	    			strInput = userInput.nextLine();
+	    			System.out.print("\n");
+	    				try { 
+	    					emID = Integer.parseInt(strInput);
+	    					validID = true;
+	    				} catch(NumberFormatException e) {
+	    					System.out.println("\nInvalid Entry! Please use correct datatype.\n");
+	    	    			userInput.reset();
+	    				}
+				}
+	    		// Set type of reimbursement
+	    		while(validType == false) {
+	    			System.out.println(entryQ[1].query);
+	    			String  resp = userInput.nextLine();
+	    			String inCorrect = "";
+	    			int intRep = Integer.parseInt(resp);
+	    			System.out.print("\n");
+	    			try {
+	    				switch (intRep) {
+    						case 1: typeER = RequestType.LODGING;
+	    							validType = true;
+    								break;
+    						case 2: typeER = RequestType.TRAVEL;
+									validType = true;
+    								break;
+    						case 3: typeER = RequestType.FOOD;
+									validType = true;
+    								break;
+    						case 4: typeER = RequestType.OTHER;
+									validType = true;
+    								break;	
+    						default: inCorrect =  "\nPlease type either 1, 2, 3, or 4 to proceed.\n";
+        							break;
+	    				}
+	    				System.out.println(inCorrect);
+	    			} catch(Exception e){
+    					System.out.println("\nInvalid Entry! Please use correct datatype.\n");
+    	    			userInput.reset();
+    				}
+    				
+	    		}
+	    		// Take Amount of Purchase 
+	    		while(validAOP == false) {
+	    			System.out.println(entryQ[2].query);
+	    			strInput = userInput.nextLine();
+	    			System.out.print("\n"); 
+	    				try {  
+	    					reimAmt = Double.parseDouble(strInput);
+	    					validAOP = true;
+	    				} catch(NumberFormatException e) {
+	    					System.out.println("\nInvalid Entry! Please use correct datatype.\n");
+	    	    			userInput.reset();
+	    				} 
+	    		}
+	    		// Take Date of Purchase
+	    		while(validDOP == false) {
+		    		System.out.println(entryQ[3].query);
+		    		strInput = userInput.nextLine();
+		    		System.out.print("\n");
+		    		SimpleDateFormat dop = new SimpleDateFormat("MM/dd/yyyy");
+		    		dop.setLenient(false); 
+		    			try { 
+		    				dopStr = dop.parse(strInput);
+		    				validDOP = true;
+		    			} catch(ParseException e) {
+		    				System.out.println("\nInvalid Entry! Please use correct datatype.\n");
+			    			userInput.reset();
+		    			}
+        			
+	    		}
+	    		// Take a Description
+	    		System.out.println(entryQ[4].query);
+	    		desc = userInput.nextLine();
+	    		System.out.print("\n");
+    		
+	    		System.out.print("Entered Information:\n");
+	    		System.out.print("Employee ID: " + emID + "\n");
+	    		System.out.print("Type of Reimbursement: " + typeER + "\n");
+	    		System.out.print("Purchase Amount: " + reimAmt + "\n");
+	    		System.out.print("Purchase Date: " + dopStr.toString() + "\n");
+    	    	System.out.print("Description: " + desc + "\n\n");
+    	    	
+    	    	System.out.println(checkIt);
+    	    	String ans = userInput.nextLine();
+        		System.out.print("\n");
+    	    		if (ans.equalsIgnoreCase("y") || ans.equalsIgnoreCase("yes")) {
+    	    			// Successful Submission
+    	    			System.out.println(entryQ[5].query);
+    	    			break; 
+    	    		} else {
+    	    			userInput.reset();
+    	    			validID = false;
+    	    			validType = false;
+    	    			validAOP = false;
+    	    			validDOP = false;
+    	    			continue; 
+    	    		}
+	    	}
     }
- 
+ // iii
     // This function establishes what happens if a user needs to view the status of an existing request ticket
     public static void viewRequest(Question [] requestQ) {
+		Scanner userInput = new Scanner(System.in);
+		Date date = new Date();
     	
     	// Title
-	    System.out.println("STATUS OF REQUEST");
-	    System.out.println("\n");
+	    System.out.println("\nSTATUS OF REQUEST\n");
 				
     	for (int u = 0; u < requestQ.length; u++) {
     		System.out.println(requestQ[u].query);
     		String subResponse = userInput.nextLine();
-    		System.out.println("\n");
     	}
     	
     }
     
     // This function establishes what happens if a user needs to access old and new request tickets
     public static void accessArchive(Question [] archiveQ) {
+		Scanner userInput = new Scanner(System.in);
+		Date date = new Date();
     	
     	// Title
-	    System.out.println("ACCESSING REQUEST ARCHIEVE");
-	    System.out.println("\n");
+	    System.out.println("\nACCESSING REQUEST ARCHIEVE\n");
 				
     	for (int u = 0; u < archiveQ.length; u++) {
     		System.out.println(archiveQ[u].query);
     		String subResponse = userInput.nextLine();
-    		System.out.println("\n");
     	}
     	
     }
-    
-    
-
-
 }
-
-
-
-
-
-
 
 /*
  * This area is for tried and old code gathered during project.
@@ -189,7 +307,6 @@ public class Main {
  * 
  * 
  * */
-
 
 
 // Run task base on user selection
