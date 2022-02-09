@@ -3,13 +3,21 @@
  */
 package com.revature.ersystem.func;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.revature.ersystem.enu.RequestType;
-import com.revature.ersystem.model.Question;
+import com.revature.ersystem.enu.*;
+
+import com.revature.ersystem.model.*;
+import com.revature.ersystem.store.*;
+
+import io.javalin.Javalin;
 
 /**
  * @author Kareem A. Henry
@@ -51,6 +59,12 @@ public class StartRequest {
 		Date dopStr = new Date();
 		String desc = "";
 		
+
+		RequestDAO requestDAO = new RequestDAO();
+		EmployeeDAO employeeDAO = new EmployeeDAO();
+		ManagerDAO managerDAO = new ManagerDAO();
+		
+		Javalin app = Javalin.create().start(7000);
     	
     	// Set up question to review information.
     	String checkIt = "Please review the informationn entered: \n\n" + "Is this information correct?\n"
@@ -66,16 +80,22 @@ public class StartRequest {
 	    			System.out.print("\n");
 	    				try { 
 	    					emID = Integer.parseInt(strInput);
+	    					// Welcome User by name to continue
+	    					Employee emp = EmployeeDAO.getEmployeeById(emID);
+	    					System.out.println(emp);
 	    					validID = true;
 	    				} catch(NumberFormatException e) {
 	    					System.out.println("\nInvalid Entry! Please use correct datatype.\n");
 	    	    			userInput.reset();
 	    				}
-	    				// if employee id is found say hello username
-	    				
-	    				
-	    				
+
+	    	    		
+
+//	        			System.out.println("Thank You, " + name + "! Let's continue with your ticket request.");
+//	        			System.out.print("\n");	 
+	        			
 				}
+    			
 	    		// Set type of reimbursement
 	    		while(validType == false) {
 	    			System.out.println(entryQ[1].query);
@@ -151,8 +171,12 @@ public class StartRequest {
     	    	String ans = userInput.nextLine();
         		System.out.print("\n");
     	    		if (ans.equalsIgnoreCase("y") || ans.equalsIgnoreCase("yes")) {
+    	    			
     	    			// Successful Submission
     	    			System.out.println(entryQ[5].query);
+
+    	    			
+    	    			TicketDAO.addTicket(new Ticket(reimAmt, dopStr.toString(), desc, typeER, RequestStatus.ENQEUE));
     	    			break; 
     	    		} else {
     	    			validID = false;
@@ -161,7 +185,11 @@ public class StartRequest {
     	    			validDOP = false;
     	    			continue; 
     	    		}
+    	    		
+    	    		
+    	    	
 	    	}
     }
+   
 
 }

@@ -1,5 +1,6 @@
 package com.revature.ersystem.store;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +12,8 @@ import java.util.Properties;
 public class ConnectionFactory {
 
 	public static final ConnectionFactory connectionFactory = new ConnectionFactory();
-	private Properties props;
+
+	private Properties props = new Properties();
 	
 	static {
 			try {
@@ -28,8 +30,8 @@ public class ConnectionFactory {
 	private ConnectionFactory() {
 		try {
 			
-			ClassLoader loader = Thread.currentThread().getContextClassLoader();
-			props.load(loader.getResourceAsStream("db.properties"));
+			 FileReader file = new FileReader("res/src/db.properties");
+			 props.load (file); 
 			
 		} catch(IOException e) {
 			
@@ -48,7 +50,7 @@ public class ConnectionFactory {
 	public Connection getConnection() {
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection(props.getProperty("url"), props.getProperty("user"), props.getProperty("password"));
+			conn = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
 		} catch(SQLException e) {
 			
 			e.printStackTrace();			

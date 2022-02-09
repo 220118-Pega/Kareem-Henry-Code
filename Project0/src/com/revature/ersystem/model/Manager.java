@@ -3,6 +3,8 @@
  */
 package com.revature.ersystem.model;
 
+import com.revature.ersystem.enu.DepartmentType;
+
 /**
  * @author Kareem A. Henry
  *
@@ -15,27 +17,21 @@ public class Manager {
 
 	int id;
 
-	String name, department;
+	String name;
+
+	DepartmentType dep_type;
 	
-	public Manager(int id, String name, String department) {
+	public Manager(int id, String name, DepartmentType dep_type) {
 			
 			this.id = id;
 			this.name = name;
-			this.department = department;
+			this.dep_type = dep_type;
 					
 		
 	}
 	
 	public Manager() {
 		
-	}
-	
-	@Override
-	public String toString() {
-		return "Manager Information" + "\n" + 
-				"Manager ID: " + id + "\n" + 
-				"Name: " + name + "\n"  + 
-				"Department: " + department + "\n" + "\n";
 	}
 	
 	public int getId() {
@@ -54,12 +50,19 @@ public class Manager {
 		this.name = name;
 	}
 
-	public String getDepartment() {
-		return department;
+	public DepartmentType getDepartment() {
+		return dep_type;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setDepartment(DepartmentType dep_type) {
+		this.dep_type = dep_type;
+	}
+	
+	@Override
+	public String toString() {
+		return  "Manager ID: " + id + "\n" + 
+				"Name: " + name + "\n"  + 
+				"Department: " + dep_type + "\n" + "\n";
 	}
 
 }

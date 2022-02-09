@@ -1,9 +1,13 @@
 package test.java;
 
-//import org.junit.Assert;
-//import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 
-//import com.revature.stacklite.models.Solution;
+import com.revature.ersystem.enu.DepartmentType;
+import com.revature.ersystem.enu.RequestStatus;
+import com.revature.ersystem.enu.RequestType;
+import com.revature.ersystem.model.*;
+import com.revature.ersystem.store.*;
 
 class RequestTest {
     
@@ -20,21 +24,22 @@ class RequestTest {
 
 //	@Test
 //	void setUpvoteShouldSet() {
-//		// Arrange
-//		int testUpVote = 4;
-//		Solution testSolution = new Solution();
+//		int strDate;
+//		DepartmentType reqDate;
+//		Request testRequest = new Request();
 //
 //		// Act
 //		try {
-//			testSolution.setUpvote(testUpVote);
+//			testRequest.Request(20, strDate, 1, "Jesus", RequestType.TRAVEL, DepartmentType.IT_SERVICES, 100.00, RequestStatus.APPROVED, "I want my money back!");
+//);
 //			// Assert
-//			Assert.assertEquals(testUpVote, testSolution.getUpvote());
+//			Assert.assertEquals(testUpVote, testRequest.getUpvote());
 //		} catch (Exception e) {
 //			Assert.fail();
 //		}
 //
 //	}
-//
+
 //	@Test
 //	void setUpvoteShouldThrowException() {
 //		// Arrange

@@ -30,39 +30,24 @@ public class Request {
 	DepartmentType dep_type;
 	String description, date, dateofPurchase, name, department;
 	
-	public Request(int id, String date, int employeeID, String name, DepartmentType dep_type, RequestType req_type, String dateofPurchase, double amount, RequestStatus req_status, String description) {
+	public Request(int id, String date, int employeeID, String name, Double amount, String dateofPurchase, 
+			String description, RequestType req_type, RequestStatus req_status) {
 
 		this.id = id;
 		this.date = date;
 		this.employeeID = employeeID;
 		this.name = name;
-		this.dep_type = dep_type;
-		this.req_type = req_type;
-		this.dateofPurchase = dateofPurchase;
 		this.amount = amount;
-		this.req_status = req_status;
+		this.dateofPurchase = dateofPurchase;
 		this.description = description;
+		this.req_type = req_type;
+		this.req_status = req_status;
 		
 	}
 	
 	public Request() {
 		
 	}
-	
-	@Override
-	public String toString() {
-		return "REIMBURSEMENT REQUEST TICKET" + "\n" + 
-				"Date of Request: " +  date + "\n" + 
-				"Employee ID: " + employeeID + "\n"  + 
-				"Employee Name: " + name + "\n"  + 		
-				"Department: " + dep_type + "\n"  + 		
-				"Type: " + req_type + "\n" + 
-				"Amount: " + amount + "\n" + 
-				"Date of Purchase: " + dateofPurchase + "\n" + 	
-				"Status: " +  req_status + "\n" + 
-				"Description: " + description + "\n" +"\n";
-	}
-
 
 
 	public int getId() {
@@ -135,6 +120,20 @@ public class Request {
 
 	public void setDepartment(DepartmentType dep_type) {
 		this.dep_type = dep_type;
+	}
+	
+	@Override
+	public String toString() {
+		return "REIMBURSEMENT REQUEST TICKET" + "\n" + 
+				"Employee ID: " + employeeID + "\n"  + 
+				"Date of Request: " +  date + "\n" + 
+				"Employee Name: " + name + "\n"  + 		
+				"Department: " + dep_type + "\n"  + 		
+				"Type: " + req_type + "\n" + 
+				"Amount: " + amount + "\n" + 
+				"Date of Purchase: " + dateofPurchase + "\n" + 	
+				"Status: " +  req_status + "\n" + 
+				"Description: " + description + "\n" +"]";
 	}
 
 }
